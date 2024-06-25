@@ -1,0 +1,40 @@
+﻿@page "/inventory"
+@using MysticExpeditions.Client.Services
+@inject NavigationManager NavigationManager
+@inject GameStateService GameStateService
+
+@code {
+    private void UseItem(string item)
+    {
+        GameStateService.RemoveItemFromInventory(item);
+    }
+
+    private void BackToGame()
+    {
+        NavigationManager.NavigateTo("/game");
+    }
+
+    protected override void OnInitialized()
+    {
+        GameStateService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GameStateService.OnChange -= StateHasChanged;
+    }
+}
+
+<PageTitle>Inventory</PageTitle>
+
+<h1>Inventory</h1>
+<ul>
+    @foreach (var item in GameStateService.Inventory)
+    {
+        <li>
+            @item
+            <button @onclick="() => UseItem(item)">Use</button>
+        </li>
+    }
+</ul>
+<button @onclick="BackToGame">Back to Game</button>

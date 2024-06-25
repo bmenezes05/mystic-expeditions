@@ -1,0 +1,61 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+<div class="main-menu">
+    <img src="images/logo.png" alt="Mystic Expeditions Logo" class="logo" />
+
+    <div class="menu-items">
+        <button @onclick="NewGame">New Game</button>
+        <button @onclick="LoadGame">Load Game</button>
+        <button @onclick="ShowOptions">Options</button>
+        <button @onclick="ExitGame">Exit</button>
+    </div>
+</div>
+
+@code {
+    private void NewGame()
+    {
+        NavigationManager.NavigateTo("/newgame");
+    }
+
+    private void LoadGame()
+    {
+        // Lógica para carregar um jogo salvo
+    }
+
+    private void ShowOptions()
+    {
+        NavigationManager.NavigateTo("/options");
+    }
+
+    private void ExitGame()
+    {
+        // Lógica para sair do jogo
+    }
+}
+
+<style>
+    .main-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .logo {
+        width: 300px; /* Ajuste conforme necessário */
+        margin-bottom: 20px;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .menu-items button {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+</style>

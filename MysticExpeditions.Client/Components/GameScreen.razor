@@ -1,0 +1,59 @@
+﻿@page "/game"
+@using MysticExpeditions.Client.Services
+@inject NavigationManager NavigationManager
+@inject GameStateService GameStateService
+
+@code {
+    private void OpenInventory()
+    {
+        NavigationManager.NavigateTo("/inventory");
+    }
+
+    private void TriggerEvent()
+    {
+        GameStateService.TriggerRandomEvent();
+    }
+
+    private void ChooseOption(string option)
+    {
+        GameStateService.ChooseOption(option);
+    }
+
+    protected override void OnInitialized()
+    {
+        GameStateService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GameStateService.OnChange -= StateHasChanged;
+    }
+}
+
+<PageTitle>Game</PageTitle>
+
+<h1>Game Screen</h1>
+<p>Welcome, @GameStateService.PlayerName!</p>
+<p>Health: @GameStateService.PlayerHealth</p>
+<button @onclick="OpenInventory">Inventory</button>
+<button @onclick="TriggerEvent">Trigger Random Event</button>
+
+@if (GameStateService.CurrentEvent != null)
+{
+    <div class="event-dialog">
+        <h2>@GameStateService.CurrentEvent.Title</h2>
+        <p>@GameStateService.CurrentEvent.Description</p>
+        @foreach (var choice in GameStateService.CurrentEvent.Choices)
+        {
+            <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
+        }
+    </div>
+}
+
+<h2>Event Log</h2>
+<ul>
+    @foreach (var message in GameStateService.EventMessages)
+    {
+        <li>@message</li>
+    }
+</ul>
