@@ -9,13 +9,47 @@
     <label for="playerName">Name:</label>
     <input type="text" id="playerName" @bind="playerName" />
 
-    <!-- Adicione outras opções de atributos do personagem aqui -->
+    <label for="playerSex">Sex:</label>
+    <select id="playerSex" @bind="playerSex">
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+
+    <label for="playerRace">Race:</label>
+    <select id="playerRace" @bind="playerRace">
+        <option>Human</option>
+        <option>Elf</option>
+        <option>Dwarf</option>
+        <option>Orc</option>
+    </select>
+
+    <label for="playerSubRace">Sub-Race:</label>
+    <select id="playerSubRace" @bind="playerSubRace">
+        <option>None</option>
+        <option>High Elf</option>
+        <option>Wood Elf</option>
+        <option>Dark Elf</option>
+        <option>Mountain Dwarf</option>
+        <option>Hill Dwarf</option>
+    </select>
+
+    <label for="playerClass">Class:</label>
+    <select id="playerClass" @bind="playerClass">
+        <option>Warrior</option>
+        <option>Mage</option>
+        <option>Rogue</option>
+        <option>Healer</option>
+    </select>
 
     <button @onclick="StartGame">Start Game</button>
 </div>
 
 @code {
     private string playerName;
+    private string playerSex;
+    private string playerRace;
+    private string playerSubRace;
+    private string playerClass;
 
     private void StartGame()
     {
@@ -31,15 +65,22 @@
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
+        background-color: #ECEFF4;
+        color: #1B263B;
+        border-radius: 10px;
     }
 
         .new-game-container h1 {
             text-align: center;
+            font-family: 'Cinzel', serif;
+            color: #F5C518;
         }
 
         .new-game-container label {
             display: block;
             margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+            color: #333333;
         }
 
         .new-game-container input, .new-game-container select {
@@ -47,10 +88,22 @@
             padding: 8px;
             font-size: 16px;
             margin-bottom: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
         }
 
         .new-game-container button {
             padding: 10px 20px;
             font-size: 18px;
+            font-family: 'Cinzel', serif;
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
+
+            .new-game-container button:hover {
+                background-color: #45A049;
+            }
 </style>

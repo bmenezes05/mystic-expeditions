@@ -1,0 +1,75 @@
+﻿@using MysticExpeditions.Client.Models
+<b>aaaaa</b>
+<div class="dialogue-container">
+    <b>bbbbb</b>
+    @if (currentDialogueIndex < Dialogues.Count)
+    {
+        <p><strong>@Dialogues[currentDialogueIndex].CharacterName:</strong> @Dialogues[currentDialogueIndex].Text</p>
+        <button @onclick="NextDialogue">Next</button>
+    }
+    else
+    {
+        <div class="choices">
+            @foreach (var choice in Choices)
+            {
+                <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public List<Dialogue> Dialogues { get; set; }
+    [Parameter] public Dictionary<string, Action> Choices { get; set; }
+
+    private int currentDialogueIndex = 0;
+
+    private void NextDialogue()
+    {
+        if (currentDialogueIndex < Dialogues.Count)
+        {
+            currentDialogueIndex++;
+        }
+    }
+
+    private void ChooseOption(string option)
+    {
+        Choices[option]?.Invoke();
+        currentDialogueIndex = 0; // Reset the dialogue index for next use
+    }
+}
+
+<style>
+    .dialogue-container {
+        background-color: #ECEFF4;
+        color: #1B263B;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .dialogue-container p {
+            font-family: 'Merriweather', serif;
+            margin-bottom: 10px;
+        }
+
+        .dialogue-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            font-family: 'Cinzel', serif;
+            background-color: #F5C518;
+            color: #1B263B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .dialogue-container button:hover {
+                background-color: #E6AC00;
+            }
+
+    .choices {
+        margin-top: 20px;
+    }
+</style>

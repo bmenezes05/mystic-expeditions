@@ -1,4 +1,5 @@
 ﻿@page "/game"
+@using MysticExpeditions.Client.Models
 @using MysticExpeditions.Client.Services
 @inject NavigationManager NavigationManager
 @inject GameStateService GameStateService
@@ -28,32 +29,121 @@
     {
         GameStateService.OnChange -= StateHasChanged;
     }
-}
 
-<PageTitle>Game</PageTitle>
+    private int currentDialogueIndex = 0;
 
-<h1>Game Screen</h1>
-<p>Welcome, @GameStateService.PlayerName!</p>
-<p>Health: @GameStateService.PlayerHealth</p>
-<button @onclick="OpenInventory">Inventory</button>
-<button @onclick="TriggerEvent">Trigger Random Event</button>
-
-@if (GameStateService.CurrentEvent != null)
-{
-    <div class="event-dialog">
-        <h2>@GameStateService.CurrentEvent.Title</h2>
-        <p>@GameStateService.CurrentEvent.Description</p>
-        @foreach (var choice in GameStateService.CurrentEvent.Choices)
-        {
-            <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
-        }
-    </div>
-}
-
-<h2>Event Log</h2>
-<ul>
-    @foreach (var message in GameStateService.EventMessages)
+    private void NextDialogue()
     {
-        <li>@message</li>
+        if (currentDialogueIndex < GameStateService.CurrentEvent.Dialogues.Count)
+        {
+            currentDialogueIndex++;
+        }
     }
-</ul>
+}
+
+<div class="game-container">
+    <div class="header">
+        <h1>Mystic Expeditions</h1>
+    </div>
+    
+    <p>Welcome, @GameStateService.PlayerName!</p>
+    <p>Health: @GameStateService.PlayerHealth</p>    
+</div>
+
+<div class="game-screen">    
+    <button @onclick="TriggerEvent">Trigger Random Event</button>
+
+    @if (GameStateService.CurrentEvent != null)
+    {
+        <div class="dialogue-container">
+            <b>bbbbb</b>
+            @if (currentDialogueIndex < GameStateService.CurrentEvent.Dialogues.Count)
+            {
+                <p><strong>@GameStateService.CurrentEvent.Dialogues[currentDialogueIndex].CharacterName:</strong> @GameStateService.CurrentEvent.Dialogues[currentDialogueIndex].Text</p>
+                <button @onclick="NextDialogue">Next</button>
+            }
+            else
+            {
+                <div class="choices">
+                    @foreach (var choice in GameStateService.CurrentEvent.Choices)
+                    {
+                        <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .game-container {
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .content {
+        margin-top: 20px;
+    }
+
+    .event-dialog {
+        background-color: #ECEFF4;
+        color: #1B263B;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .event-dialog h2 {
+            color: #F5C518;
+            font-family: 'Cinzel', serif;
+        }
+
+        .event-dialog p {
+            font-family: 'Merriweather', serif;
+        }
+
+    .choices button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        font-family: 'Cinzel', serif;
+        background-color: #F5C518;
+        color: #1B263B;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .choices button:hover {
+            background-color: #E6AC00;
+        }
+
+    .game-screen {
+        padding: 20px;
+        text-align: center;
+    }
+
+        .game-screen h1 {
+            font-family: 'Cinzel', serif;
+            color: #F5C518;
+        }
+
+        .game-screen button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            font-family: 'Cinzel', serif;
+            background-color: #F5C518;
+            color: #1B263B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .game-screen button:hover {
+                background-color: #E6AC00;
+            }
+</style>

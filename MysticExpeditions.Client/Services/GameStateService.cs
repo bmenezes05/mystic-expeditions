@@ -21,6 +21,12 @@ namespace MysticExpeditions.Client.Services
                     {
                         { "Trade", () => AddItemToInventory("Mystic Artifact") },
                         { "Ignore", () => UpdatePlayerHealth(-5) }
+                    },
+                    Dialogues = new List<Dialogue>
+                    {
+                        new Dialogue { CharacterName = "Merchant", Text = "Greetings, traveler! Care to trade?" },
+                        new Dialogue { CharacterName = "Player", Text = "What do you have for sale?" },
+                        new Dialogue { CharacterName = "Merchant", Text = "I have wares if you have coin." }
                     }
                 },
                 new GameEvent
@@ -31,6 +37,12 @@ namespace MysticExpeditions.Client.Services
                     {
                         { "Trade", () => AddItemToInventory("Ancient Scroll") },
                         { "Ignore", () => UpdatePlayerHealth(-5) }
+                    },
+                    Dialogues = new List<Dialogue>
+                    {
+                        new Dialogue { CharacterName = "Friend", Text = "Greetings, traveler! Care to trade?" },
+                        new Dialogue { CharacterName = "Player", Text = "What do you have for sale?" },
+                        new Dialogue { CharacterName = "Friend", Text = "I have wares if you have coin." }
                     }
                 },
                 // Adicione mais eventos conforme necessário

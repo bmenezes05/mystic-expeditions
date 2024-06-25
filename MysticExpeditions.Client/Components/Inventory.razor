@@ -27,14 +27,43 @@
 
 <PageTitle>Inventory</PageTitle>
 
-<h1>Inventory</h1>
-<ul>
-    @foreach (var item in GameStateService.Inventory)
-    {
-        <li>
-            @item
-            <button @onclick="() => UseItem(item)">Use</button>
-        </li>
-    }
-</ul>
+<div class="inventory-container">
+    <h2>Inventory</h2>
+    <ul>
+        @foreach (var item in GameStateService.Inventory)
+        {
+            <li>
+                @item
+                <button @onclick="() => UseItem(item)">Use</button>
+            </li>
+        }
+    </ul>
+</div>
 <button @onclick="BackToGame">Back to Game</button>
+
+
+<style>
+    .inventory-container {
+        background-color: #ECEFF4;
+        color: #1B263B;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .inventory-container h2 {
+            font-family: 'Cinzel', serif;
+            color: #F5C518;
+        }
+
+        .inventory-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .inventory-container li {
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+</style>
