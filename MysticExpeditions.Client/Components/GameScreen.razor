@@ -45,33 +45,17 @@
     <div class="header">
         <h1>Mystic Expeditions</h1>
     </div>
-    
+
     <p>Welcome, @GameStateService.PlayerName!</p>
-    <p>Health: @GameStateService.PlayerHealth</p>    
+    <p>Health: @GameStateService.PlayerHealth</p>
 </div>
 
-<div class="game-screen">    
+<div class="game-screen">
     <button @onclick="TriggerEvent">Trigger Random Event</button>
 
     @if (GameStateService.CurrentEvent != null)
-    {
-        <div class="dialogue-container">
-            <b>bbbbb</b>
-            @if (currentDialogueIndex < GameStateService.CurrentEvent.Dialogues.Count)
-            {
-                <p><strong>@GameStateService.CurrentEvent.Dialogues[currentDialogueIndex].CharacterName:</strong> @GameStateService.CurrentEvent.Dialogues[currentDialogueIndex].Text</p>
-                <button @onclick="NextDialogue">Next</button>
-            }
-            else
-            {
-                <div class="choices">
-                    @foreach (var choice in GameStateService.CurrentEvent.Choices)
-                    {
-                        <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
-                    }
-                </div>
-            }
-        </div>
+    {        
+        <DialogueComponent Dialogues="GameStateService.CurrentEvent.Dialogues" Choices="GameStateService.CurrentEvent.Choices"></DialogueComponent>
     }
 </div>
 
