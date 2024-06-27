@@ -1,6 +1,6 @@
 ﻿@page "/game"
-@using MysticExpeditions.Client.Models
-@using MysticExpeditions.Client.Services
+@using MysticExpeditions.Shared.Models
+@using MysticExpeditions.Shared.Services
 @inject NavigationManager NavigationManager
 @inject GameStateService GameStateService
 
@@ -10,14 +10,10 @@
         NavigationManager.NavigateTo("/inventory");
     }
 
-    private void TriggerEvent()
+    private void StartAdventure()
     {
-        GameStateService.TriggerRandomEvent();
-    }
-
-    private void ChooseOption(string option)
-    {
-        GameStateService.ChooseOption(option);
+        GameStateService.StartAdventure();
+        NavigationManager.NavigateTo("/adventure");
     }
 
     protected override void OnInitialized()
@@ -51,12 +47,7 @@
 </div>
 
 <div class="game-screen">
-    <button @onclick="TriggerEvent">Trigger Random Event</button>
-
-    @if (GameStateService.CurrentEvent != null)
-    {        
-        <DialogueComponent Dialogues="GameStateService.CurrentEvent.Dialogues" Choices="GameStateService.CurrentEvent.Choices"></DialogueComponent>
-    }
+    <button @onclick="StartAdventure">Start Adventure</button>    
 </div>
 
 <style>

@@ -1,30 +1,38 @@
-﻿@using MysticExpeditions.Client.Models
+﻿@using MysticExpeditions.Shared.Models
+<h1>Models</h1>
+
 <div class="dialogue-container">
-    @if (currentDialogueIndex < Dialogues.Count)
+    @if (currentDialogueIndex < Dialogues?.Count)
     {
-        <p><strong>@Dialogues[currentDialogueIndex].CharacterName:</strong> @Dialogues[currentDialogueIndex].Text</p>
-        <button @onclick="NextDialogue">Next</button>
+        <p><strong>@Dialogues?[currentDialogueIndex].CharacterName:</strong> @Dialogues?[currentDialogueIndex].Text</p>
+        <div class="choices">
+            @if (Dialogues?[currentDialogueIndex]?.Choices?.Count > 0)
+            {
+                @foreach (var choice in Dialogues[currentDialogueIndex].Choices)
+                {
+                    <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
+                }
+            }
+            else
+            {
+            <button @onclick="NextDialogue">Next</button>
+            }
+        </div>
     }
     else
     {
-        <div class="choices">
-            @foreach (var choice in Choices)
-            {
-                <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
-            }
-        </div>
+
     }
 </div>
 
 @code {
-    [Parameter] public List<Dialogue> Dialogues { get; set; }
-    [Parameter] public Dictionary<string, Action> Choices { get; set; }
+    [Parameter] public List<Dialogue> Dialogues { get; set; }    
 
     private int currentDialogueIndex = 0;
 
     private void NextDialogue()
     {
-        if (currentDialogueIndex < Dialogues.Count)
+        if (currentDialogueIndex < Dialogues?.Count)
         {
             currentDialogueIndex++;
         }
@@ -32,7 +40,7 @@
 
     private void ChooseOption(string option)
     {
-        Choices[option]?.Invoke();
+        Dialogues[currentDialogueIndex].Choices[option]?.Invoke();
         currentDialogueIndex = 0; // Reset the dialogue index for next use
     }
 }

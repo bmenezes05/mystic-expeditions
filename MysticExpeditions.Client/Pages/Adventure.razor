@@ -1,0 +1,87 @@
+﻿@page "/adventure"
+@using MysticExpeditions.Client.Components
+@using MysticExpeditions.Shared.Models
+@using MysticExpeditions.Shared.Services
+@inject GameStateService GameStateService
+<div class="random-event-container">    
+    @if (GameStateService.CurrentEvent != null)
+    {
+        <DialogueComponent Dialogues="GameStateService.CurrentEvent.Dialogues"></DialogueComponent>        
+    }
+</div>
+
+@code {
+}
+
+<style>
+    .random-event-container {
+        padding: 20px;
+    }
+
+    .event-dialog {
+        background-color: #ECEFF4;
+        color: #1B263B;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .event-dialog h2 {
+            color: #F5C518;
+            font-family: 'Cinzel', serif;
+        }
+
+        .event-dialog p {
+            font-family: 'Merriweather', serif;
+        }
+
+    .choices button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        font-family: 'Cinzel', serif;
+        background-color: #F5C518;
+        color: #1B263B;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .choices button:hover {
+            background-color: #E6AC00;
+        }
+</style>
+<style>
+    .dialogue-container {
+        background-color: #ECEFF4;
+        color: #1B263B;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .dialogue-container p {
+            font-family: 'Merriweather', serif;
+            margin-bottom: 10px;
+        }
+
+        .dialogue-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            font-family: 'Cinzel', serif;
+            background-color: #F5C518;
+            color: #1B263B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .dialogue-container button:hover {
+                background-color: #E6AC00;
+            }
+
+    .choices {
+        margin-top: 20px;
+    }
+</style>
