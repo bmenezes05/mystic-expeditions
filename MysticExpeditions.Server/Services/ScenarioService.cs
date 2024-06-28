@@ -1,4 +1,4 @@
-﻿namespace MysticExpeditions.Shared.Services
+﻿namespace MysticExpeditions.Server.Services
 {
     public class ScenarioService
     {

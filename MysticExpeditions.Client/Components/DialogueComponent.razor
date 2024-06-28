@@ -1,6 +1,4 @@
-﻿@using MysticExpeditions.Shared.Models
-<h1>Models</h1>
-
+﻿@using MysticExpeditions.Server.Models
 <div class="dialogue-container">
     @if (currentDialogueIndex < Dialogues?.Count)
     {
@@ -10,7 +8,7 @@
             {
                 @foreach (var choice in Dialogues[currentDialogueIndex].Choices)
                 {
-                    <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button>
+                    @* <button @onclick="() => ChooseOption(choice.Key)">@choice.Key</button> *@
                 }
             }
             else
@@ -40,7 +38,7 @@
 
     private void ChooseOption(string option)
     {
-        Dialogues[currentDialogueIndex].Choices[option]?.Invoke();
+        //Dialogues[currentDialogueIndex].Choices[option]?.Invoke();
         currentDialogueIndex = 0; // Reset the dialogue index for next use
     }
 }

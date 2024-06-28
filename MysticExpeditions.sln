@@ -5,16 +5,14 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Mobile", "MysticExpeditions.Mobile\MysticExpeditions.Mobile.csproj", "{D3A1992B-E062-4F81-9E70-ABD64A93D751}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Shared", "MysticExpeditions.Shared\MysticExpeditions.Shared.csproj", "{E6EA69E1-7E77-4A2C-BE5C-3F6A7FB929EE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Server", "MysticExpeditions.Server\MysticExpeditions.Server.csproj", "{D1396C5C-4120-4708-A617-D7A122DE24A8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88929FAF-D028-4CAF-82E5-3B489FD3E976}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Client", "MysticExpeditions.Client\MysticExpeditions.Client.csproj", "{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticExpeditions.Server", "MysticExpeditions.Server\MysticExpeditions.Server.csproj", "{CEE4A467-F48F-4533-88D0-E389E33DFB36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,18 +26,14 @@ Global
 		{D3A1992B-E062-4F81-9E70-ABD64A93D751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A1992B-E062-4F81-9E70-ABD64A93D751}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3A1992B-E062-4F81-9E70-ABD64A93D751}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{E6EA69E1-7E77-4A2C-BE5C-3F6A7FB929EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6EA69E1-7E77-4A2C-BE5C-3F6A7FB929EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6EA69E1-7E77-4A2C-BE5C-3F6A7FB929EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6EA69E1-7E77-4A2C-BE5C-3F6A7FB929EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1396C5C-4120-4708-A617-D7A122DE24A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1396C5C-4120-4708-A617-D7A122DE24A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1396C5C-4120-4708-A617-D7A122DE24A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1396C5C-4120-4708-A617-D7A122DE24A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

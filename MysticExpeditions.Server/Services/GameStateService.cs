@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using MysticExpeditions.Shared.Models;
-using System;
+using MysticExpeditions.Server.Models;
 
-namespace MysticExpeditions.Shared.Services
+namespace MysticExpeditions.Server.Services
 {
     public class GameStateService
     {
@@ -17,9 +16,9 @@ namespace MysticExpeditions.Shared.Services
 
         private void InitializeEvents()
         {
-            events = new List<GameEvent>
+            events = new List<AdventureEvent>
             {
-                new GameEvent
+                new AdventureEvent
                 {
                     Title = "An Unexpected Encounter",
                     Description = "You encounter a wandering merchant.",
@@ -35,17 +34,11 @@ namespace MysticExpeditions.Shared.Services
                         },
                         new Dialogue {
                             CharacterName = "Merchant",
-                            Text = "I have wares if you have coin. Do you want to trade?",
-                            Choices = new Dictionary<string, Action>
-                            {
-                                { "Trade", () => AddItemToInventory("Ancient Scroll") },
-                                { "Ignore", () => UpdatePlayerHealth(-5) },
-                                { "Leave", BackToGameMenu }
-                            },
+                            Text = "I have wares if you have coin. Do you want to trade?"
                         }
                     }
                 },
-                new GameEvent
+                new AdventureEvent
                 {
                     Title = "An Unexpected Encounter",
                     Description = "You encounter a wandering merchant.",
@@ -61,12 +54,7 @@ namespace MysticExpeditions.Shared.Services
                         },
                         new Dialogue {
                             CharacterName = "Merchant",
-                            Text = "I have wares if you have coin. Do you want to trade?",
-                            Choices = new Dictionary<string, Action>
-                            {
-                                { "Trade", () => AddItemToInventory("Ancient Scroll") },
-                                { "Ignore", () => UpdatePlayerHealth(-5) }
-                            },
+                            Text = "I have wares if you have coin. Do you want to trade?"                            
                         }
                     }
                 },
@@ -83,6 +71,7 @@ namespace MysticExpeditions.Shared.Services
         #region Inventory
 
         public List<string> Inventory { get; private set; } = new List<string>();
+
         public void AddItemToInventory(string item)
         {
             Inventory.Add(item);
@@ -119,14 +108,14 @@ namespace MysticExpeditions.Shared.Services
             NotifyStateChanged();
         }
 
-        private List<GameEvent> events;        
+        private List<AdventureEvent> events;
 
         public void BackToGameMenu()
         {
-            _navigationManager.NavigateTo("/game"); 
+            _navigationManager.NavigateTo("/game");
         }
 
-        public GameEvent CurrentEvent { get; private set; }        
+        public AdventureEvent CurrentEvent { get; private set; }
 
         private void AddEventMessage(string message)
         {
