@@ -48,15 +48,15 @@
     private string playerName;
     private string playerSex;
     private string playerRace;
-    private string playerSubRace;
     private string playerClass;
+    private string playerSubClass;
+    
+    
 
     private void StartGame()
     {
-        GameStateService.PlayerName = playerName;
-        GameStateService.PlayerHealth = 100;
-        GameStateService.Inventory.Clear();
-        NavigationManager.NavigateTo("/game"); // Exemplo simples, ajuste conforme sua lógica
+        GameStateService.StartAdventure        
+        NavigationManager.NavigateTo("/game");
     }
 }
 

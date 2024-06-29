@@ -61,12 +61,18 @@ namespace MysticExpeditions.Server.Services
             };
         }
 
-        #region Player Attributes
+        #region Character
+        public void CreatePlayer(int amount)
+        {
+            NotifyStateChanged();
+        }
 
-        public string PlayerName { get; set; }
-        public int PlayerHealth { get; set; } = 100;
+        public void UpdatePlayer(int amount)
+        {            
+            NotifyStateChanged();
+        }
 
-        #endregion Player Attributes
+        #endregion Character
 
         #region Inventory
 
@@ -90,13 +96,7 @@ namespace MysticExpeditions.Server.Services
 
         #endregion Inventory
 
-        public event Action OnChange;
-
-        public void UpdatePlayerHealth(int amount)
-        {
-            PlayerHealth += amount;
-            NotifyStateChanged();
-        }
+        public event Action OnChange;        
 
         private void NotifyStateChanged() => OnChange?.Invoke();
 

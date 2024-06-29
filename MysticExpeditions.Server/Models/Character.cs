@@ -2,21 +2,25 @@
 {
     public class Character
     {
-        public required int Id { get; set; }
-        public required string Name { get; set; }
-        public required string Race { get; set; }
-        public required string Class { get; set; }
-        public required string SubClass { get; set; }
-        public required int Level { get; set; }
-        public required int Experience { get; set; }
-        public required int Health { get; set; }
-        public required int Attack { get; set; }
-        public required int Defense { get; set; }
-        public required int Luck { get; set; }
-        public required bool MainCharacter { get; set; }
-        public required bool TeamMember { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int Experience { get; set; }
+        public int Health { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Luck { get; set; }
+        public bool MainCharacter { get; set; }
+        public bool TeamMember { get; set; }
+        public int RaceId { get; set; }
+        public Race Race { get; set; }
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
+        public int? SubClassId { get; set; }
+        public Class SubClass { get; set; }
+
+        public List<GameSave> GameSaves { get; set; }
 
         public List<EquipableItem> Equipments { get; set; } = new List<EquipableItem>();
-
     }
 }
