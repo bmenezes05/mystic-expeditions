@@ -15,8 +15,9 @@ builder.Services.AddDbContext<GameDbContext>(options => options.UseSqlite("Data 
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+builder.Services.AddScoped<IGameSaveRepository, GameSaveRepository>();
 
-builder.Services.AddSingleton<GameStateService>();
-builder.Services.AddSingleton<ScenarioService>();
+builder.Services.AddScoped<GameSaveService>();
+builder.Services.AddScoped<GameStateService>();
 
 await builder.Build().RunAsync();

@@ -1,4 +1,4 @@
-﻿@page "/newgame"
+﻿@page "/characterCreation"
 @using MysticExpeditions.Server.Services
 @inject NavigationManager NavigationManager
 @inject GameStateService GameStateService
@@ -23,22 +23,22 @@
         <option>Orc</option>
     </select>
 
-    <label for="playerSubRace">Sub-Race:</label>
-    <select id="playerSubRace" @bind="playerSubRace">
-        <option>None</option>
-        <option>High Elf</option>
-        <option>Wood Elf</option>
-        <option>Dark Elf</option>
-        <option>Mountain Dwarf</option>
-        <option>Hill Dwarf</option>
-    </select>
-
     <label for="playerClass">Class:</label>
     <select id="playerClass" @bind="playerClass">
         <option>Warrior</option>
         <option>Mage</option>
         <option>Rogue</option>
         <option>Healer</option>
+    </select>
+
+    <label for="playerSubRace">Sub-Race:</label>
+    <select id="playerSubRace" @bind="playerSubClass">
+        <option>None</option>
+        <option>High Elf</option>
+        <option>Wood Elf</option>
+        <option>Dark Elf</option>
+        <option>Mountain Dwarf</option>
+        <option>Hill Dwarf</option>
     </select>
 
     <button @onclick="StartGame">Start Game</button>
@@ -50,12 +50,10 @@
     private string playerRace;
     private string playerClass;
     private string playerSubClass;
-    
-    
 
     private void StartGame()
     {
-        GameStateService.StartAdventure        
+        GameStateService.StartNewGame(playerName, character);
         NavigationManager.NavigateTo("/game");
     }
 }

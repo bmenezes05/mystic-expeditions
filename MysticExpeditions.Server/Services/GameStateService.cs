@@ -1,16 +1,21 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
+using MysticExpeditions.Server.Data;
 using MysticExpeditions.Server.Models;
 
 namespace MysticExpeditions.Server.Services
 {
     public class GameStateService
     {
-        private readonly NavigationManager _navigationManager;
+        private readonly NavigationManager navigationManager;
+        private readonly IGameSaveService gameSaveService;
 
-        public GameStateService(NavigationManager navigationManager)
+        public GameSave CurrentGameSave { get; private set; }
+
+        public GameStateService(NavigationManager navigationManager, IGameSaveService gameSaveService)
         {
-            _navigationManager = navigationManager;
-
+            this.gameSaveService = gameSaveService;
+            this.navigationManager = navigationManager;
             InitializeEvents();
         }
 
@@ -54,12 +59,39 @@ namespace MysticExpeditions.Server.Services
                         },
                         new Dialogue {
                             CharacterName = "Merchant",
-                            Text = "I have wares if you have coin. Do you want to trade?"                            
+                            Text = "I have wares if you have coin. Do you want to trade?"
                         }
                     }
                 },
             };
         }
+
+        #region GameSaves
+        public async Task StartNewGame(string playerName, Character character)
+        {
+            CurrentGameSave = await gameSaveService.CreateNewGameSave(playerName, character);
+        }
+        public async Task SaveProgress(string saveData)
+        {
+            if (CurrentGameSave != null)
+            {
+                await gameSaveService.SaveProgress(CurrentGameSave.GameSaveId, saveData);
+            }
+        }
+        public async Task LoadGame(int gameSaveId)
+        {
+            CurrentGameSave = await gameSaveService.LoadGameSave(gameSaveId);
+        }
+        public async Task DeleteGame(int gameSaveId)
+        {
+            await gameSaveService.DeleteGameSave(gameSaveId);
+        }
+
+        public async Task<IEnumerable<GameSave>> GetAllGameSaves()
+        {
+            return await gameSaveService.GetAllGameSaves();
+        }
+        #endregion GameSaves
 
         #region Character
         public void CreatePlayer(int amount)
@@ -68,7 +100,7 @@ namespace MysticExpeditions.Server.Services
         }
 
         public void UpdatePlayer(int amount)
-        {            
+        {
             NotifyStateChanged();
         }
 
@@ -96,7 +128,7 @@ namespace MysticExpeditions.Server.Services
 
         #endregion Inventory
 
-        public event Action OnChange;        
+        public event Action OnChange;
 
         private void NotifyStateChanged() => OnChange?.Invoke();
 
@@ -112,7 +144,7 @@ namespace MysticExpeditions.Server.Services
 
         public void BackToGameMenu()
         {
-            _navigationManager.NavigateTo("/game");
+            navigationManager.NavigateTo("/game");
         }
 
         public AdventureEvent CurrentEvent { get; private set; }
