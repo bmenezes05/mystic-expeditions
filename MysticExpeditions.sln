@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Client", "MysticExpeditions.Client\MysticExpeditions.Client.csproj", "{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Domain", "MysticExpeditions.Server\MysticExpeditions.Domain.csproj", "{CEE4A467-F48F-4533-88D0-E389E33DFB36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Api", "MysticExpeditions.Api\MysticExpeditions.Api.csproj", "{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticExpeditions.Api", "MysticExpeditions.Api\MysticExpeditions.Api.csproj", "{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Domain", "MysticExpeditions.Domain\MysticExpeditions.Domain.csproj", "{829085F3-67A4-4F8F-B1A5-D56974F3BB86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +32,14 @@ Global
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829085F3-67A4-4F8F-B1A5-D56974F3BB86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829085F3-67A4-4F8F-B1A5-D56974F3BB86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829085F3-67A4-4F8F-B1A5-D56974F3BB86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829085F3-67A4-4F8F-B1A5-D56974F3BB86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

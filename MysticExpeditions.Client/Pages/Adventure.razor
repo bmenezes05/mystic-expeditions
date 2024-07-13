@@ -1,7 +1,7 @@
 ﻿@page "/adventure"
 @using MysticExpeditions.Client.Components
-@using MysticExpeditions.Server.Models
-@using MysticExpeditions.Server.Services
+@using MysticExpeditions.Domain.Models
+@using MysticExpeditions.Domain.Services
 @inject GameStateService GameStateService
 <div class="random-event-container">    
     @if (GameStateService.CurrentEvent != null)

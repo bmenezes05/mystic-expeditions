@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using MysticExpeditions.Server.Data.Repositories.Interfaces;
-using MysticExpeditions.Server.Models;
+using MysticExpeditions.Domain.Data.Repositories.Interfaces;
+using MysticExpeditions.Domain.Models;
 
 namespace MysticExpeditions.Api.Controllers
 {

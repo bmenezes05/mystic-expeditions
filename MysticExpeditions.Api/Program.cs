@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MysticExpeditions.Server.Data;
-using MysticExpeditions.Server.Data.Repositories.Interfaces;
-using MysticExpeditions.Server.Data.Repositories;
+using MysticExpeditions.Domain.Data;
+using MysticExpeditions.Domain.Data.Repositories;
+using MysticExpeditions.Domain.Data.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<GameDbContext>(options => options.UseSqlite("Data Source=mysticexpeditions.db"));
+var teste = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<GameDbContext>(options =>
+    options.UseSqlite(teste));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();

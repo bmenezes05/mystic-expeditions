@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MysticExpeditions.Server\MysticExpeditions.Domain.csproj" />
+    <ProjectReference Include="..\MysticExpeditions.Domain\MysticExpeditions.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MysticExpeditions.Client;
 using MysticExpeditions.Domain.Apis;
-using MysticExpeditions.Server.Services;
+using MysticExpeditions.Domain.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
