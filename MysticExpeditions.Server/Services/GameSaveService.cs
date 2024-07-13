@@ -1,4 +1,4 @@
-﻿using MysticExpeditions.Server.Data.Repositories;
+﻿using MysticExpeditions.Server.Data.Repositories.Interfaces;
 using MysticExpeditions.Server.Models;
 
 namespace MysticExpeditions.Server.Services

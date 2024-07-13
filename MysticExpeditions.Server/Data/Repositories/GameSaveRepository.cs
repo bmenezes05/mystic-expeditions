@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MysticExpeditions.Server.Data.Repositories.Interfaces;
 using MysticExpeditions.Server.Models;
 
 namespace MysticExpeditions.Server.Data.Repositories

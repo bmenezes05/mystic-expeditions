@@ -1,59 +1,77 @@
-﻿@page "/characterCreation"
+﻿@page "/character-creation"
+@using MysticExpeditions.Server.Models
 @using MysticExpeditions.Server.Services
 @inject NavigationManager NavigationManager
 @inject GameStateService GameStateService
 
-<div class="new-game-container">
-    <h1>Create a New Character</h1>
+<h3>Criação de Personagem</h3>
 
-    <label for="playerName">Name:</label>
-    <input type="text" id="playerName" @bind="playerName" />
+<EditForm Model="characterModel" OnValidSubmit="CreateCharacter">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-    <label for="playerSex">Sex:</label>
-    <select id="playerSex" @bind="playerSex">
-        <option>Male</option>
-        <option>Female</option>
-    </select>
+    <div>
+        <label for="name">Nome do Personagem:</label>
+        <InputText id="name" @bind-Value="characterModel.Name" />
+    </div>
 
-    <label for="playerRace">Race:</label>
-    <select id="playerRace" @bind="playerRace">
-        <option>Human</option>
-        <option>Elf</option>
-        <option>Dwarf</option>
-        <option>Orc</option>
-    </select>
+    <div>
+        <label for="gender">Sexo:</label>
+        <InputSelect id="gender" @bind-Value="characterModel.Gender">
+            <option value="Male">Masculino</option>
+            <option value="Female">Feminino</option>
+        </InputSelect>
+    </div>
 
-    <label for="playerClass">Class:</label>
-    <select id="playerClass" @bind="playerClass">
-        <option>Warrior</option>
-        <option>Mage</option>
-        <option>Rogue</option>
-        <option>Healer</option>
-    </select>
+    <div>
+        <label for="race">Raça:</label>
+        <InputSelect id="race" @bind-Value="characterModel.RaceId">
+            @foreach (var race in Races)
+            {
+                <option value="@race.Id">@race.Name</option>
+            }
+        </InputSelect>
+    </div>
 
-    <label for="playerSubRace">Sub-Race:</label>
-    <select id="playerSubRace" @bind="playerSubClass">
-        <option>None</option>
-        <option>High Elf</option>
-        <option>Wood Elf</option>
-        <option>Dark Elf</option>
-        <option>Mountain Dwarf</option>
-        <option>Hill Dwarf</option>
-    </select>
+    <div>
+        <label for="class">Classe:</label>
+        <InputSelect id="class" @bind-Value="characterModel.ClassId">
+            @foreach (var characterClass in Classes)
+            {
+                <option value="@characterClass.ClassId">@characterClass.Name</option>
+            }
+        </InputSelect>
+    </div>
 
-    <button @onclick="StartGame">Start Game</button>
-</div>
+    <div>
+        <label for="subclass">Subclasse:</label>
+        <InputSelect id="subclass" @bind-Value="characterModel.SubClassId">
+            @foreach (var subclass in Subclasses)
+            {
+                <option value="@subclass.ClassId">@subclass.Name</option>
+            }
+        </InputSelect>
+    </div>
+
+    <button type="submit">Criar Personagem</button>
+</EditForm>
 
 @code {
-    private string playerName;
-    private string playerSex;
-    private string playerRace;
-    private string playerClass;
-    private string playerSubClass;
+    private Character characterModel = new Character();
+    private List<Race> Races = new List<Race>();
+    private List<Class> Classes = new List<Class>();
+    private List<Class> Subclasses = new List<Class>();
 
-    private void StartGame()
+    protected override async Task OnInitializedAsync()
     {
-        GameStateService.StartNewGame(playerName, character);
+        Races = await GameStateService.GetRacesAsync();
+        Classes = await GameStateService.GetClassesAsync();
+        Subclasses = await GameStateService.GetSubclassesAsync();
+    }
+
+    private async Task CreateCharacter()
+    {
+        await GameStateService.CreateCharacterAsync(characterModel);
         NavigationManager.NavigateTo("/game");
     }
 }

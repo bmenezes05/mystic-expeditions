@@ -12,6 +12,7 @@
         public int Luck { get; set; }
         public bool MainCharacter { get; set; }
         public bool TeamMember { get; set; }
+        public string Gender { get; set; }
         public int RaceId { get; set; }
         public Race Race { get; set; }
         public int ClassId { get; set; }

@@ -1,6 +1,6 @@
 ﻿using MysticExpeditions.Server.Models;
 
-namespace MysticExpeditions.Server.Data.Repositories
+namespace MysticExpeditions.Server.Data.Repositories.Interfaces
 {
     public interface ICharacterRepository : IRepository<Character>
     {

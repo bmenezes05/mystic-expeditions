@@ -1,12 +1,12 @@
 ﻿using MysticExpeditions.Server.Models;
 
-namespace MysticExpeditions.Server.Data.Repositories
+namespace MysticExpeditions.Server.Data.Repositories.Interfaces
 {
     public interface IGameSaveRepository : IRepository<GameSave>
     {
         Task<GameSave> GetByIdAsync(int gameSaveId);
 
-        Task<IEnumerable<GameSave>> GetAllAsync();        
+        Task<IEnumerable<GameSave>> GetAllAsync();
         Task DeleteAsync(int gameSaveId);
     }
 }

@@ -1,69 +1,31 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using MysticExpeditions.Domain.Apis;
 using MysticExpeditions.Server.Data;
+using MysticExpeditions.Server.Data.Repositories;
+using MysticExpeditions.Server.Data.Repositories.Interfaces;
 using MysticExpeditions.Server.Models;
+using System.Net.Http;
 
 namespace MysticExpeditions.Server.Services
 {
     public class GameStateService
     {
         private readonly NavigationManager navigationManager;
+        private readonly IApiClient _apiClient;
         private readonly IGameSaveService gameSaveService;
 
         public GameSave CurrentGameSave { get; private set; }
 
-        public GameStateService(NavigationManager navigationManager, IGameSaveService gameSaveService)
+        public GameStateService(NavigationManager navigationManager, IApiClient _apiClient)
         {
-            this.gameSaveService = gameSaveService;
             this.navigationManager = navigationManager;
+            this._apiClient = _apiClient;
             InitializeEvents();
         }
 
         private void InitializeEvents()
         {
-            events = new List<AdventureEvent>
-            {
-                new AdventureEvent
-                {
-                    Title = "An Unexpected Encounter",
-                    Description = "You encounter a wandering merchant.",
-                    Dialogues = new List<Dialogue>
-                    {
-                        new Dialogue {
-                            CharacterName = "Merchant",
-                            Text = "Greetings, traveler! Care to trade?"
-                        },
-                        new Dialogue {
-                            CharacterName = "Player",
-                            Text = "What do you have for sale?"
-                        },
-                        new Dialogue {
-                            CharacterName = "Merchant",
-                            Text = "I have wares if you have coin. Do you want to trade?"
-                        }
-                    }
-                },
-                new AdventureEvent
-                {
-                    Title = "An Unexpected Encounter",
-                    Description = "You encounter a wandering merchant.",
-                    Dialogues = new List<Dialogue>
-                    {
-                        new Dialogue {
-                            CharacterName = "Merchant",
-                            Text = "Greetings, traveler! Care to trade?"
-                        },
-                        new Dialogue {
-                            CharacterName = "Player",
-                            Text = "What do you have for sale?"
-                        },
-                        new Dialogue {
-                            CharacterName = "Merchant",
-                            Text = "I have wares if you have coin. Do you want to trade?"
-                        }
-                    }
-                },
-            };
         }
 
         #region GameSaves
@@ -102,6 +64,27 @@ namespace MysticExpeditions.Server.Services
         public void UpdatePlayer(int amount)
         {
             NotifyStateChanged();
+        }
+
+        public async Task<List<Race>> GetRacesAsync()
+        {
+            return await _apiClient.GetRacesAsync();
+        }
+
+        public async Task<List<Class>> GetClassesAsync()
+        {
+            return await _apiClient.GetClassesAsync();
+        }
+
+        public async Task<List<Class>> GetSubclassesAsync()
+        {
+            return await _apiClient.GetSubclassesAsync();
+        }
+
+        public async Task CreateCharacterAsync(Character character)
+        {
+            var response = await _apiClient.CreateCharacterAsync(character);
+            response.EnsureSuccessStatusCode();
         }
 
         #endregion Character
@@ -144,7 +127,7 @@ namespace MysticExpeditions.Server.Services
 
         public void BackToGameMenu()
         {
-            navigationManager.NavigateTo("/game");
+            //navigationManager.NavigateTo("/game");
         }
 
         public AdventureEvent CurrentEvent { get; private set; }

@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Client", "MysticExpeditions.Client\MysticExpeditions.Client.csproj", "{C96DBC1A-53E7-43E8-B3B7-9BDC92FFC5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticExpeditions.Server", "MysticExpeditions.Server\MysticExpeditions.Server.csproj", "{CEE4A467-F48F-4533-88D0-E389E33DFB36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticExpeditions.Domain", "MysticExpeditions.Server\MysticExpeditions.Domain.csproj", "{CEE4A467-F48F-4533-88D0-E389E33DFB36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticExpeditions.Api", "MysticExpeditions.Api\MysticExpeditions.Api.csproj", "{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEE4A467-F48F-4533-88D0-E389E33DFB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D00ABDBF-06E9-4851-8B0F-EF571AC0E9A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

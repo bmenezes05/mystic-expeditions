@@ -12,6 +12,8 @@ namespace MysticExpeditions.Server.Data
 
         public DbSet<AdventureEvent> AdventureEvent { get; set; }
         public DbSet<Chapter> Chapter { get; set; }
+        public DbSet<Class> Class { get; set; }
+        public DbSet<Race> Race { get; set; }
         public DbSet<Chapter> Character { get; set; }
         public DbSet<Choice> Choice { get; set; }
         public DbSet<ChoiceResult> ChoiceResult { get; set; }
